@@ -38,3 +38,29 @@ span {
   font-size: 0.97em;
   color: #444;
 }
+.project-thumb {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 1.2em;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.contact-links {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.contact-link {
+  color: #0072e6;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: color 0.2s;
+}
+
+.contact-link:hover {
+  color: #005bb5;
+  text-decoration: underline;
+}
