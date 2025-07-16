@@ -1,69 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Lauren</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Lauren McLane</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <h1>Hi, I'm Lauren.</h1>
-    <p>
-      I'm a Stanford undergrad that likes to make things.<br>
-      Here are a couple projects I've worked on.<br>
-      Contact lmclane@stanford.edu
-    </p>
-    <ul class="projects-list">
-      <li>
-        <img src="images/tetris.jpg" alt="LED Tetris!" class="project-thumb">
-        <div class="project-info">
-          <a href="https://github.com/yourusername/tetris-arduino" target="_blank"><strong>LED Tetris!</strong></a><br>
-          Wired, soldered, and programmed Tetris on a PCB using an Arduino Uno and LED multiplexing.
+    <div class="cursor-dot"></div>
+    <div class="scroll-container">
+        <div class="content">
+            <div class="content-wrapper">
+                <header class="header">
+                    <h1>Hi! I'm Lauren.</h1>
+                    <p>I study computer science and electrical engineering at Stanford. Here are some things I've made.</p>
+                </header>
+
+                <main>
+                    <section class="projects-section">
+                        <h2 class="section-title">FPGA Projects</h2>
+
+                        <div class="project">
+                            <div class="project-image-container">
+                                 <img src="images/pwhasher.jpg" alt="Password Hasher" class="project-image">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Password Hasher</h3>
+                                <div class="project-description">
+                                    <p>Implemented the Brownie password hashing algorithm and a corresponding checker on a PYNQ-Z1 board for secure, hardware-accelerated verification.</p>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/lmclane04/pwhasher" target="_blank" class="project-link">View on GitHub &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Arduino Uno Projects</h2>
+
+                        <div class="project tetris-project">
+                            <div class="project-image-container">
+                                <img src="images/tetris.jpg" alt="LED Tetris" class="project-image">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">LED Tetris</h3>
+                                <div class="project-description">
+                                    <p>Wired, soldered, and programmed a fully functional game of Tetris on a custom-built PCB, using an Arduino Uno and LED multiplexing.</p>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/lmclane04/led-matrix-tetris" target="_blank" class="project-link">View on GitHub &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project useless-box-project">
+                            <div class="project-image-container">
+                                <img src="images/erratic_box.jpg" alt="Erratic Useless Box" class="project-image">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Erratic Useless Box</h3>
+                                <div class="project-description">
+                                    <p>A simple "Useless Box" finite-state machine upgraded with an Arduino Uno to introduce a variety of randomized and surprising behavior patterns.</p>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/lmclane04/erratic-useless-box" target="_blank" class="project-link">View on GitHub &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Software Projects</h2>
+
+                        <div class="project placeholder">
+                            <div class="project-image-container">
+                                <!-- Placeholder for image -->
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Future Project</h3>
+                                <div class="project-description">
+                                    <p>Work in progress.</p>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" target="_blank" class="project-link">View on GitHub &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+
+                <footer>
+                    <div class="footer-content">
+                        <a href="mailto:lmclane@stanford.edu" class="contact-link">
+                            <span>lmclane@stanford.edu</span>
+                        </a>
+                        <a href="https://github.com/lmclane04" target="_blank" class="contact-link">
+                            <span>github.com/lmclane04</span>
+                        </a>
+                    </div>
+                </footer>
+            </div>
         </div>
-      </li>
-      <li>
-        <img src="images/uselessbox.jpg" alt="Shy (and angry) Useless Box" class="project-thumb">
-        <div class="project-info">
-          <a href="https://github.com/yourusername/shy-useless-box" target="_blank"><strong>Shy (and angry) Useless Box</strong></a><br>
-          Simple Useless box FSM upgraded with an Arduino Uno for different behavior patterns.
-        </div>
-      </li>
-      <li>
-        <img src="images/musicplayer.jpg" alt="Harmonic Music Player and Display" class="project-thumb">
-        <div class="project-info">
-          <a href="https://github.com/yourusername/harmonic-music-player" target="_blank"><strong>Harmonic Music Player and Display</strong></a><br>
-          Sophisticated music player with harmonics, ADSR-envelope dynamics, reverb, stereo panning, and a realtime waveform display using double buffering on a PYNQ-Z1 FPGA.
-        </div>
-      </li>
-      <li>
-        <img src="images/passwordhasher.jpg" alt="Password Hasher" class="project-thumb">
-        <div class="project-info">
-          <a href="https://github.com/yourusername/password-hasher" target="_blank"><strong>Password Hasher</strong></a><br>
-          Implemented Brownie password hashing algorithm and checker on a PYNQ-Z1 board.
-        </div>
-      </li>
-      <li>
-        <img src="images/fpadder.jpg" alt="Floating Point Adder" class="project-thumb">
-        <div class="project-info">
-          <a href="https://github.com/yourusername/floating-point-adder" target="_blank"><strong>Floating Point Adder</strong></a><br>
-          Simple floating point adder on a PYNQ-Z1.
-        </div>
-      </li>
-      <li>
-        <img src="images/bikelight.jpg" alt="Bike Light" class="project-thumb">
-        <div class="project-info">
-          <a href="https://github.com/yourusername/bike-light" target="_blank"><strong>Bike Light</strong></a><br>
-          Adjustable blinking bike light FSM on a PYNQ-Z1.
-        </div>
-      </li>
-    </ul>
-    <hr>
-    <div class="contact-links">
-      <p>
-        <a href="mailto:lmclane@stanford.edu" class="contact-link">Email me</a> &nbsp;|&nbsp;
-        <a href="https://github.com/lmclane04" target="_blank" class="contact-link">My GitHub</a>
-      </p>
     </div>
-  </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

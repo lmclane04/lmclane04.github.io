@@ -1,66 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    --bg-color: #0d0d0d;
+    --text-color: #e6e6e6;
+    --text-color-muted: #808080;
+    --primary-color: #00aaff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #fafbfc;
-  color: #222;
-  margin: 0;
-  padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    overscroll-behavior: none;
+    cursor: none;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
 }
-main {
-  max-width: 600px;
-  margin: 60px auto;
-  padding: 32px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+
+a, button {
+    cursor: none;
 }
-h1 {
-  font-size: 2em;
-  margin-bottom: 0.5em;
+
+.scroll-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
-ul {
-  list-style: none;
-  padding: 0;
+
+.content {
+    /* This element is moved by GSAP for the smooth scroll */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
-li {
-  margin-bottom: 1.5em;
+
+.content-wrapper {
+    /* This element constrains the width and centers the content */
+    max-width: 1100px; /* Reduced max-width for a more compact feel */
+    margin: 0 auto;
+    padding: 0 5vw 20vh 5vw; /* Adjusted padding for new width */
 }
+
+/* Custom Cursor */
+.cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 15px 5px var(--primary-color);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.cursor-streak {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    background-color: var(--primary-color);
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 12px 3px var(--primary-color);
+}
+
+/* Header */
+.header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Made smaller */
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.header p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-color-muted);
+    max-width: 50ch;
+}
+
+/* Project Showcase */
+.projects-section {
+    padding: 100px 0;
+}
+
+.section-title {
+    font-size: clamp(1rem, 2.5vw, 1.5rem); /* Made smaller */
+    font-weight: 500;
+    margin: 15vh 0 8vh 0; /* Increased spacing */
+    position: relative;
+    color: var(--text-color-muted);
+}
+
+.project {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 25vh; /* Increased spacing */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s, transform 0.8s;
+}
+
+.project.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project a {
+    display: contents; /* Makes the <a> tag not interfere with grid layout */
+    text-decoration: none;
+    color: inherit;
+}
+
+.project-image-container {
+    grid-column: 1 / span 5; /* Made image smaller */
+    grid-row: 1;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 4 / 3; /* Made images taller */
+    max-width: 100%;
+}
+
+.project.tetris-project .project-image {
+    object-position: 50% 80%; /* Shift Tetris image down */
+}
+
+.project.useless-box-project .project-image {
+    object-position: 50% 70%; /* Shift Useless Box image down */
+}
+
+.project-image {
+    width: 100%;
+    height: 100%; /* Ensure image fills container for object-fit to work */
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    object-fit: cover; /* This is key */
+}
+
+.project:hover .project-image {
+    transform: scale(1.05);
+}
+
+.project-info {
+    grid-column: 7 / -1; /* Adjusted info position */
+    grid-row: 1;
+    text-align: right;
+    z-index: 2;
+}
+
+/* Alternating layout */
+.project:nth-child(even) .project-image-container {
+    grid-column: 8 / -1; /* Made image smaller */
+}
+.project:nth-child(even) .project-info {
+    grid-column: 1 / span 6; /* Adjusted info position */
+    text-align: left;
+}
+
+
+.project-title {
+    font-size: clamp(1rem, 2vw, 1.4rem); /* Made smaller */
+    font-weight: 500;
+    margin: 0 0 20px;
+    color: #fff;
+}
+
+.project-description {
+    background-color: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.project-description p {
+    margin: 0;
+    color: #888;
+}
+
+.project-links {
+    margin-top: 15px;
+}
+
+.project-link {
+    color: #bbb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.project-links span {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.project-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-left: 20px;
+}
+.project:nth-child(even) .project-links a {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+
+/* Footer */
+footer {
+    padding: 100px 0 40px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+footer .contact-link {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 400;
+    color: var(--text-color-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+footer .contact-link:hover {
+    color: var(--primary-color);
+}
+
+footer .contact-link:hover span {
+    color: #fff;
+    text-decoration: underline;
+}
+
 a {
-  color: #0072e6;
-  text-decoration: none;
-  font-weight: bold;
-}
-a:hover {
-  text-decoration: underline;
-}
-span {
-  display: block;
-  margin-top: 0.2em;
-  font-size: 0.97em;
-  color: #444;
-}
-.project-thumb {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-right: 1.2em;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-}
-
-.contact-links {
-  text-align: center;
-  margin-top: 2em;
-}
-
-.contact-link {
-  color: #0072e6;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 1.1em;
-  transition: color 0.2s;
-}
-
-.contact-link:hover {
-  color: #005bb5;
-  text-decoration: underline;
+    cursor: none;
 }
