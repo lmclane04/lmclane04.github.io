@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Animate project cards on scroll
     gsap.registerPlugin(ScrollTrigger);
     
-    // GSAP Smooth Scroll
     const content = document.querySelector('.content');
     gsap.to(content, {
         y: () => -(content.clientHeight - window.innerHeight),
@@ -22,14 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let dotY = 0;
     const delay = 0.15;
 
-    // Create a canvas for the glowing trail
+
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     document.body.insertBefore(canvas, document.body.firstChild);
     canvas.style.position = 'fixed';
     canvas.style.top = '0';
     canvas.style.left = '0';
-    canvas.style.zIndex = '-1'; // Place it behind all other content
+    canvas.style.zIndex = '-1'; 
     let canvasWidth = window.innerWidth;
     let canvasHeight = window.innerHeight;
     canvas.width = canvasWidth;
@@ -50,13 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     gsap.ticker.add(() => {
-        // Dot movement
         dotX += (mouseX - dotX) * delay;
         dotY += (mouseY - dotY) * delay;
         cursorDot.style.left = `${dotX}px`;
         cursorDot.style.top = `${dotY}px`;
 
-        // Trail animation
         trail.push({ x: mouseX, y: mouseY });
         if (trail.length > 30) {
             trail.shift();

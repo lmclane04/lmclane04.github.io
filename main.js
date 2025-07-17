@@ -6,11 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let historyIndex = -1;
     let topZIndex = 100;
 
-    // CMatrix elements
     const matrixCanvas = document.getElementById('matrix-canvas');
     let isMatrixRunning = false;
 
-    // Focus the input when the terminal is clicked
     terminal.addEventListener('click', (e) => {
         if (e.target.classList.contains('clickable-file')) {
             const command = e.target.dataset.command;
@@ -22,30 +20,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Handle command input
     commandInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             const command = commandInput.value.trim();
             commandInput.value = '';
-            historyIndex = -1; // Reset history index
+            historyIndex = -1; 
 
-            // Add to history if it's not an empty command
             if (command) {
-                commandHistory.unshift(command); // Add to the beginning of the array
-                if (commandHistory.length > 20) { // Limit history size
+                commandHistory.unshift(command); 
+                if (commandHistory.length > 20) { 
                     commandHistory.pop();
                 }
             }
 
-            // Echo the command
             const commandEcho = document.createElement('div');
             commandEcho.innerHTML = `<span class="prompt">lauren@portfolio:~$</span> ${command}`;
             output.appendChild(commandEcho);
 
-            // Process the command
             processCommand(command);
 
-            // Scroll to the bottom
             terminal.scrollTop = terminal.scrollHeight;
         } else if (e.key === 'ArrowUp') {
             e.preventDefault();
@@ -122,7 +115,6 @@ Programming Languages: C/C++, Python, Zsh, Bash, Verilog, HTML, JavaScript, Type
         '.secret.txt': `Well done, you've found the easter egg!`
     };
 
-    // --- TYPEWRITER EFFECT ---
     function typeWriter(element, text, speed, callback) {
         let i = 0;
         element.innerHTML = '';
@@ -138,7 +130,6 @@ Programming Languages: C/C++, Python, Zsh, Bash, Verilog, HTML, JavaScript, Type
         type();
     }
 
-    // --- BOOT SEQUENCE ---
     function bootSequence() {
         const welcomeMessage = `Welcome to lauren's terminal.
 Type 'help' for a list of available commands.
@@ -152,7 +143,6 @@ For a non-interactive version, type 'gui'.`;
     }
 
 
-    // --- COMMAND PROCESSING ---
     function processCommand(command) {
         const commandOutput = document.createElement('div');
         commandOutput.classList.add('command-output');
@@ -231,7 +221,6 @@ For a non-interactive version, type 'gui'.`;
     }
 
     function createWindow(filename, content) {
-        // Create elements
         const guiWindow = document.createElement('div');
         guiWindow.className = 'gui-window';
 
@@ -258,7 +247,6 @@ For a non-interactive version, type 'gui'.`;
         const resizeHandle = document.createElement('div');
         resizeHandle.className = 'resize-handle';
 
-        // Assemble
         titleBar.appendChild(title);
         titleBar.appendChild(closeBtn);
         guiWindow.appendChild(titleBar);
@@ -266,7 +254,6 @@ For a non-interactive version, type 'gui'.`;
         guiWindow.appendChild(resizeHandle);
         document.body.appendChild(guiWindow);
 
-        // --- Window Functionality ---
         const bringToFront = () => {
             topZIndex++;
             guiWindow.style.zIndex = topZIndex;
@@ -279,7 +266,6 @@ For a non-interactive version, type 'gui'.`;
             guiWindow.remove();
         });
 
-        // Dragging
         let isDragging = false;
         let dragOffsetX, dragOffsetY;
 
@@ -292,7 +278,6 @@ For a non-interactive version, type 'gui'.`;
             }
         });
 
-        // Resizing
         let isResizing = false;
         let resizeStartX, resizeStartY, startWidth, startHeight;
 
@@ -323,7 +308,6 @@ For a non-interactive version, type 'gui'.`;
         });
     }
 
-    // --- CMATRIX LOGIC ---
     let matrixAnimation;
     
     function runMatrix() {
@@ -377,7 +361,6 @@ For a non-interactive version, type 'gui'.`;
         matrixCanvas.style.display = 'none';
     }
 
-    // Hide input line initially and start boot sequence
     commandInput.parentElement.style.opacity = 0;
     bootSequence();
 });
