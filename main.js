@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let commandHistory = [];
     let historyIndex = -1;
     let topZIndex = 100;
+    let tabCompletions = [];
+    let tabIndex = -1;
 
     const matrixCanvas = document.getElementById('matrix-canvas');
     let isMatrixRunning = false;
@@ -21,6 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     commandInput.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') {
+            tabCompletions = [];
+            tabIndex = -1;
+        }
+        
         if (e.key === 'Enter') {
             const command = commandInput.value.trim();
             commandInput.value = '';
@@ -34,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const commandEcho = document.createElement('div');
-            commandEcho.innerHTML = `<span class="prompt">lauren@portfolio:~$</span> ${command}`;
+            commandEcho.innerHTML = `<span class="prompt">lauren@portfolio:~$</span>${command}`;
             output.appendChild(commandEcho);
 
             processCommand(command);
@@ -55,10 +62,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 historyIndex = -1;
                 commandInput.value = '';
             }
+        } else if (e.key === 'Tab') {
+            e.preventDefault();
+            const currentInput = commandInput.value;
+            const words = currentInput.split(' ');
+            const lastWord = words[words.length - 1];
+            
+            const availableCommands = ['help', 'list', 'cat', 'open', 'matrix', 'exit', 'clear'];
+            const availableFiles = Object.keys(files);
+            
+            let matches = [];
+            
+            if (words.length > 1 && (words[0] === 'cat' || words[0] === 'open')) {
+                matches = availableFiles.filter(file => 
+                    file.toLowerCase().startsWith(lastWord.toLowerCase())
+                );
+            } else {
+                const allOptions = [...availableCommands, ...availableFiles];
+                matches = allOptions.filter(option => 
+                    option.toLowerCase().startsWith(lastWord.toLowerCase())
+                );
+            }
+            
+            if (matches.length === 0 || lastWord === '') {
+                return;
+            }
+            
+            if (matches.length === 1) {
+                words[words.length - 1] = matches[0];
+                commandInput.value = words.join(' ');
+                tabCompletions = [];
+                tabIndex = -1;
+            } else if (matches.length > 1) {
+                if (tabCompletions.length === 0 || tabCompletions.join(' ') !== matches.join(' ')) {
+                    tabCompletions = matches;
+                    tabIndex = 0;
+                } else {
+                    tabIndex = (tabIndex + 1) % tabCompletions.length;
+                }
+                
+                words[words.length - 1] = tabCompletions[tabIndex];
+                commandInput.value = words.join(' ');
+            }
         }
     });
 
-    // --- VIRTUAL FILE SYSTEM AND CONTENT ---
+
     const files = {
         'about.txt': `Hello! I'm Lauren, a electrical engineering and computer science student at Stanford.
 I'm passionate about building things, from low-level hardware to full-stack applications.
@@ -68,9 +117,9 @@ Type 'cat projects.txt' to see some of the things I've made.`,
 Hardware
 -----------------------------
 * Harmonic music player and display - Built a music player with harmonic, polyphonic, reverb, and stereo features on a PYNQ-Z1 FPGA board with a waveform VGA display.
-* <a href="https://github.com/lmclane04/pwhasher" target="_blank" class="link">Password Hasher</a> - Implemented the Brownie password hashing algorithm and checker on a PYNQ-Z1 board.
-* <a href="https://github.com/lmclane04/led-matrix-tetris" target="_blank" class="link">LED Tetris</a> - A fully functional game of Tetris on a custom PCB with an Arduino Uno and LED Multiplexing.
-* <a href="https://github.com/lmclane04/erratic-useless-box" target="_blank" class="link">Erratic Useless Box</a> - A "Useless Box" FSM with added random behaviors programmed with an Arduino Uno.
+* Password Hasher - Implemented the Brownie password hashing algorithm and checker on a PYNQ-Z1 board.
+* LED Tetris - A fully functional game of Tetris on a custom PCB with an Arduino Uno and LED Multiplexing.
+* Erratic Useless Box - A "Useless Box" FSM with added random behaviors programmed with an Arduino Uno.
 
 Software
 -----------------------------
@@ -108,6 +157,24 @@ Compete on D1 Collegiate circuit. Dedicate 16 hours a week to training while car
 Previous Hong Kong U17 Women's Epee National Champion and Asia U17 Women's Epee Continental Champion.`,
         'languages.txt': `Fluent in Mandarin Chinese.
 Programming Languages: C/C++, Python, Zsh, Bash, Verilog, HTML, JavaScript, TypeScript`,
+        'coursework.txt': `Relevant Coursework
+========================
+
+* CS 107 Computer Organization and Systems: assembly, bitwise operations, memory management, implemented explicit free-list heap allocator with malloc, realloc, free
+* CS 111 Operating Systems Principles: concurrency, synchronization, scheduling, processes, virtual memory, coded Unix v6 filesystem from scratch, built fully functional shell with pipelines and I/O redirection
+* CS 221 Artificial Intelligence Principles and Techniques: search algorithms, Markov decision processes, reinforcement learning, constraint satisfaction
+* CS 109 Probability for Computer Scientists: probability with ML applications, gradient ascent, maximum likelihood estimation, logistic regression, neural networks
+* CS 106B Programming Abstractions: algorithms, data structures, object-oriented programming in C++
+* CS 106A Programming Methodology: programming in Python
+* CS 103 Mathematical Foundations of Computing: discrete math, computability theory, proofwriting
+* DATASCI 112 Principles of Data Science: web-scraping, hyperparameter tuning, cross-validation, scikit-learn & pandas
+* EE 108 Digital System Design: combinational and sequential CMOS logic design in Verilog, timing analysis
+* ENGR 40M An Intro to Making: circuit design, bread-boarding, soldering
+* MATH 51 Linear Algebra, Multivariable Calculus, and Modern Applications
+* MATH 53 Differential Equations with Linear Algebra, Fourier Methods, and Modern Applications
+* MATH 104 Applied Matrix Theory: applications include clustering, principal component analysis, dimensionality reduction, regression
+* MATH 115 Functions of a Real Variable: elementary real analysis, proofwriting
+* PHYSICS 41 Mechanics`,
         'socials.txt': `You can find me here:
 - GitHub:   <a href="https://github.com/lmclane04" target="_blank" class="link">github.com/lmclane04</a>
 - LinkedIn: <a href="https://www.linkedin.com/in/lauren-mclane-108256218/" target="_blank" class="link">https://www.linkedin.com/in/lauren-mclane-108256218/</a>
@@ -131,12 +198,13 @@ Programming Languages: C/C++, Python, Zsh, Bash, Verilog, HTML, JavaScript, Type
     }
 
     function bootSequence() {
-        const welcomeMessage = `Welcome to lauren's terminal.
+        const welcomeMessage = `Hi, I'm Lauren! Welcome to my website.
+This site is modeled after a command-line-interface. 
 Type 'help' for a list of available commands.
-For a non-interactive version, type 'gui'.`;
+To switch back to the non-interactive version, type 'exit'.`;
         const welcomeDiv = document.createElement('div');
         output.appendChild(welcomeDiv);
-        typeWriter(welcomeDiv, welcomeMessage, 50, () => {
+        typeWriter(welcomeDiv, welcomeMessage, 30, () => {
             commandInput.parentElement.style.opacity = 1;
             commandInput.focus();
         });
@@ -153,16 +221,16 @@ For a non-interactive version, type 'gui'.`;
             case 'help':
                 commandOutput.innerHTML = `Available commands:
 - help:    Shows this list of commands.
-- ls:      Lists files. Click on a file to view its content.
+- list:    Lists files. Click on a file to view its content.
 - cat:     Displays the content of a file in the terminal.
 - open:    Opens a file in a new window. (e.g., 'open about.txt')
-- cmatrix: Toggles the digital rain background effect.
-- gui:     Opens the graphical user interface version of this site.
+- matrix:  Toggles the digital rain background effect.
+- exit:    Opens the graphical user interface version of this site.
 - clear:   Clears the terminal screen.`;
                 break;
-            case 'ls':
+            case 'list':
                 let allFiles = Object.keys(files);
-                if (args[0] !== '-a' && args[0] !== '-A') { // a common alias
+                if (args[0] !== '-a' && args[0] !== '-A') {
                     allFiles = allFiles.filter(file => !file.startsWith('.'));
                 }
                 const fileList = allFiles.map(file =>
@@ -196,21 +264,21 @@ For a non-interactive version, type 'gui'.`;
                     output.appendChild(commandOutput);
                 }
                 return;
-            case 'cmatrix':
+            case 'matrix':
                 if (isMatrixRunning) {
                     stopMatrix();
                 } else {
                     runMatrix();
                 }
                 return;
-            case 'gui':
+            case 'exit':
                 commandOutput.innerHTML = 'Opening graphical user interface...';
-                window.location.href = 'simple.html';
+                window.location.href = 'index.html';
                 break;
             case 'clear':
                 output.innerHTML = '';
-                return; // Don't append another div
-            case '': // Handle empty command
+                return;
+            case '':
                 break;
             default:
                 commandOutput.textContent = `command not found: ${command}. Type 'help' for a list of commands.`;
@@ -337,7 +405,7 @@ For a non-interactive version, type 'gui'.`;
             matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
 
-            matrixCtx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim();
+            matrixCtx.fillStyle = 'rgba(0, 255, 0, 0.2)';
             matrixCtx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < rainDrops.length; i++) {

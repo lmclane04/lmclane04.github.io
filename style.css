@@ -8,8 +8,8 @@
 
 :root {
     --bg-color: #000;
-    --text-color: #0f0;
-    --prompt-color: #0f0;
+    --text-color: #fff;
+    --prompt-color: #fff;
     --link-color: rgb(0, 208, 255);
 }
 
@@ -171,4 +171,12 @@ body {
 
 #terminal.matrix-mode {
     background-color: transparent;
+}
+
+/* Matrix mode text color override */
+#terminal.matrix-mode,
+#terminal.matrix-mode .prompt,
+#terminal.matrix-mode #command-input,
+#terminal.matrix-mode .command-output {
+    color: #0f0 !important;
 }

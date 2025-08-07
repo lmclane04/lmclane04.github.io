@@ -4,18 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lauren McLane</title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="simple.css">
 </head>
 <body>
-    <canvas id="matrix-canvas"></canvas>
-    <div id="terminal">
-        <div id="output"></div>
-        <div id="input-line">
-            <span class="prompt">lauren@portfolio:~$</span>
-            <input type="text" id="command-input" autofocus>
-        </div>
+    <div class="nav-bar">
+                    <a href="terminal.html" class="terminal-link">[ Interactive Terminal ]</a>
     </div>
-    <script src="main.js"></script>
+    <div class="container">
+        <header>
+            <h1>Lauren McLane</h1>
+            <p class="subtitle">EE & CS @ Stanford</p>
+        </header>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I'm a rising junior at Stanford studying electrical engineering and computer science. I'm interested in digital & computersystems, cybersecurity, and AI.</p>
+        </section>
+
+        <section id="research">
+            <h2>Research Experience</h2>
+            <div class="entry">
+                <h3>Stanford AI Laboratory (2025)</h3>
+                <p>As part of Percy Leung & Dan Boneh’s research team, helped develop BountyBench, a benchmark for evaluating the cybersecurity capabilities and risks of large language models. Engineered offensive and defensive cybersecurity task environments using containerized (Kali Linux) infrastructure. Integrated real-world bug bounty data, enabling quantification of AI agent performance by economic impact (dollar value) and advancing the assessment of autonomous AI in cybersecurity. Findings submitted to NeurIPS 2025.</p>
+            </div>
+            <div class="entry">
+                <h3>Stanford Brains in Silicon Lab (2024)</h3>
+                <p>Developed tools for DynaDojo, an open-source benchmark for ML algorithms on complex dynamical systems. Led the integration of 130+ new chaotic dynamical systems into DynaDojo for benchmarking ML models. Devised linear algebra-based methods for generating testing data. Presented research findings for faculty weekly and also at the Stanford REU Conference in August.</p>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Work Experience</h2>
+            <div class="entry">
+                <h3>Software Engineering Intern - MirrorTab</h3>
+                <p>Develop secure web browser and extension "Trusty" to protect users from man-in-the-browser attacks on financial services and healthcare sites. Develop Proof-of-Concept malicious browser extensions to stress test MirrorTab's WebRTC pixel streaming defense technology.</p>
+            </div>
+            <div class="entry">
+                <h3>Investment Analyst Intern - Blue Pool Capital</h3>
+                <p>Performed company analysis and valuation for the investment team, with a focus on the Artificial Intelligence and Robotics industries.</p>
+            </div>
+            <div class="entry">
+                <h3>Computer Science and Maths Tutor - Stanford Center for Teaching and Learning</h3>
+                <p>Tutor students in Stanford's core computer science subjects, including intro to programming, algorithms, computer systems, probability theory, and machine learning.</p>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>Projects</h2>
+            <h3>Hardware</h3>
+             <ul>
+                <li><strong>Harmonic music player and display:</strong> Built a music player with harmonic, polyphonic, reverb, and stereo features on a PYNQ-Z1 FPGA board with a waveform VGA display.</li>
+                <li><strong>Password Hasher:</strong> Implemented the Brownie password hashing algorithm and checker on a PYNQ-Z1 board.</li>
+                <li><strong>LED Tetris:</strong> A fully functional game of Tetris on a custom PCB with an Arduino Uno and LED Multiplexing.</li>
+                <li><strong>Erratic Useless Box:</strong> A "Useless Box" FSM with added random behaviors programmed with an Arduino Uno.</li>
+            </ul>
+            <h3>Software</h3>
+            <ul>
+                <li><strong>This Website :)</strong> Interactive terminal-style website inspired by the matrix with command-line interface, matrix rain effect, and tab autocomplete. Built with HTML, CSS, and JavaScript. <a href="terminal.html" target="_blank">[Interactive Terminal]</a></li>
+            </ul>
+        </section>
+
+        <section id="extracurriculars">
+            <h2>Extracurriculars</h2>
+            <div class="entry">
+                <h3>Stanford Space Initiative Satellite Team</h3>
+                <p>Build and test hardware components for CubeSat satellite. Reflow soldering, wire crimping, harnessing, designing and debugging printed circuit boards.</p>
+            </div>
+            <div class="entry">
+                <h3>The Blyth Fund</h3>
+                <p>Analyze, value, and pitch public companies for $270K portfolio.</p>
+            </div>
+             <div class="entry">
+                <h3>Stanford Varsity Fencing Team (2023-24 Season)</h3>
+                <p>Compete on D1 Collegiate circuit. Dedicate 16 hours a week to training while carying full undergraduate course load. Previous Hong Kong U17 Women's Epee National Champion and Asia U17 Women's Epee Continental Champion.</p>
+            </div>
+        </section>
+
+        <section id="coursework">
+            <h2>Relevant Coursework</h2>
+            <ul>
+                <li><strong>CS 107 Computer Organization and Systems:</strong>  assembly, bitwise operations, memory management, implemented explicit free-list heap allocator with malloc, realloc, free</li>
+                <li><strong>CS 111 Operating Systems Principles:</strong> concurrency, synchronization, scheduling, processes, virtual memory, coded Unix v6 filesystem from scratch, built fully functional shell with pipelines and I/O redirection</li>
+                <li><strong>CS 221 Artificial Intelligence Principles and Techniques:</strong> search algorithms, Markov decision processes, reinforcement learning, constraint satisfaction</li>
+                <li><strong>CS 109 Probability for Computer Scientists:</strong> probability with ML applications, gradient ascent, maximum likelihood estimation, logistic regression, neural networks</li>
+                <li><strong>CS 106B Programming Abstractions:</strong> algorithms, data structures, object-oriented programming in C++</li>
+                <li><strong>CS 106A Programming Methodology:</strong> programming in Python</li>
+                <li><strong>CS 103 Mathematical Foundations of Computing:</strong> discrete math, computability theory, proofwriting</li>
+                <li><strong>DATASCI 112 Principles of Data Science:</strong> web-scraping, hyperparameter tuning, cross-validation, scikit-learn & pandas</li>
+                <li><strong>EE 108 Digital System Design:</strong> combinational and sequential CMOS logic design in Verilog, timing analysis</li>
+                <li><strong>ENGR 40M An Intro to Making:</strong> circuit design, bread-boarding, soldering.</li>
+                <li><strong>MATH 51 Linear Algebra, Multivariable Calculus, and Modern Applications</strong></li>
+                <li><strong>MATH 53 Differential Equations with Linear Algebra, Fourier Methods, and Modern Applications</strong></li>
+                <li><strong>MATH 104 Applied Matrix Theory:</strong> applications include clustering, principal component analysis, dimensionality reduction, regression</li>
+                <li><strong>MATH 115 Functions of a Real Variable:</strong> elementary real analysis, proofwriting</li>
+                <li><strong>PHYSICS 41 Mechanics</strong></li>
+            </ul>
+        </section>
+
+        <section id="languages">
+            <h2>Languages</h2>
+            <p>Fluent in Mandarin Chinese.</p>
+            <p><strong>Programming Languages:</strong> C/C++, Python, Zsh, Bash, Verilog, HTML, JavaScript, TypeScript</p>
+        </section>
+
+        <footer>
+            <h2>Contact</h2>
+            <p><a href="https://github.com/lmclane04" target="_blank">GitHub</a></p>
+            <p><a href="https://www.linkedin.com/in/lauren-mclane-108256218/" target="_blank">LinkedIn</a></p>
+            <p><a href="mailto:lmclane@stanford.edu">Email</a></p>
+        </footer>
+    </div>
 </body>
-</html>
+</html> 
