@@ -1,7 +1,7 @@
 body {
     line-height: 1.6;
     background-color: #ffffff;
-    color: #333;
+    color: #000000;
     margin: 0;
     padding: 0;
     position: relative;
@@ -72,7 +72,7 @@ h2 {
 
 section {
     margin-bottom: 30px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .entry {
