@@ -1,19 +1,14 @@
 body {
     font-family: serif;
-    line-height: 1.4;
+    line-height: 1.45;
     margin: 20px;
     background-color: white;
     color: black;
 }
 
-.nav-bar {
-    display: none;
-}
-
 .container {
-    max-width: 600px;
+    max-width: 680px;
     margin: 0 auto;
-    padding: 0;
 }
 
 header {
@@ -39,28 +34,18 @@ h2 {
     margin-bottom: 10px;
 }
 
-h3 {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 15px;
-}
-
 section {
     margin-bottom: 25px;
 }
 
-.entry {
-    margin-bottom: 15px;
-}
-
-ul {
+.project-list {
     margin-top: 10px;
     margin-bottom: 15px;
+    padding-left: 20px;
 }
 
-li {
-    margin-bottom: 3px;
+.project-list li {
+    margin-bottom: 7px;
 }
 
 a {
@@ -80,4 +65,18 @@ footer {
 footer p {
     display: inline;
     margin-right: 20px;
+}
+
+.project-page .back-link {
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.project-page h1 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.project-page p {
+    margin-bottom: 12px;
 }

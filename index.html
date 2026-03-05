@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="simple.css">
 </head>
 <body>
-    <div class="nav-bar">
-    </div>
     <div class="container">
         <header>
             <h1>Lauren McLane</h1>
@@ -16,83 +14,37 @@
         </header>
 
         <section id="about">
-            <p>I'm a junior at Stanford studying electrical engineering. I'm interested in the intersection of AI and hardware systems, and understanding how we make accelerated computing more portable, scalable, and efficient.
-                I'm also interested in reinforcement learning, and more broadly self-improving systems that learn to do things as well or better than humans. I'm currently working on developing self-improving agents for hardware accelerator design in Tambe Lab. 
-                I'm also currently working on a project that applies RL to analog circuit design. Check out some of the projects I've worked on in the past!                 
+            <h2>About</h2>
+            <p>
+                I'm a junior at Stanford studying electrical engineering. I'm interested in the intersection of AI and hardware systems,
+                and understanding how we make accelerated computing more portable, scalable, and efficient. I'm also interested in
+                reinforcement learning and self-improving systems that learn to do things as well or better than humans.
             </p>
-
-
+            <p>
+                I'm currently developing self-improving agents for hardware accelerator design in Tambe Lab and working on a project applying RL to analog circuit design. I also like doing small hardware projects. Check out some of my past work!
+            </p>
         </section>
 
-        <section id="research">
-            <h2>Research</h2>
-            <div class="entry">
-                <h3>Tambe Lab (2026) Thierry Tambe </h3>
-                <p>Building self-evolving agents for hardware design.</div>
-            <div class="entry">
-                <h3>Stanford AI Laboratory Cybench (2025) Percy Liang and Dan Boneh</h3>
-                <p>Evaluating the cybersecurity capabilities of LLM agents on <a href="https://bountybench.github.io/">BountyBench</a>. Research published in NeurIPS 2025. <a href="https://ai.stanford.edu/blog/bountybench/">[BountyBench: Dollar Impact of AI Agent Attackers and Defenders on Real-World Cybersecurity Systems]</a></div>
-            <div class="entry">
-                <h3>Stanford Brains in Silicon Lab (2024) Kwabena Boahen</h3>
-                <p>Benchmarking data-driven dynamical system identification for neuroscience research. <a href="EE-REU-2024-LaurenMcLane.pdf" target="_blank">[Modeling Chaos: Advancing Benchmarking for
-Data-Driven Dynamical System Identification]</a></p>
-            </div>
-        </section>
-
-        <section id="experience">
-            <h2>Work</h2>
-            <div class="entry">
-                <h3>Software Engineer at MirrorTab (2025)</h3>
-                <p><a href="https://www.mirrortab.com/">MirrorTab</a> is a small startup (< 20 people) focused on protecting users from browser-based cyber-attacks. Over the summer, I led the development of a cross-platform secure web browser, <a href="https://www.jointrusty.com/">Trusty</a>, to mitigate browser-based attacks targeting financial services.
-            </div>
-            <div class="entry">
-                <h3>Investment Analyst Intern at Blue Pool Capital</h3>
-                <p>VC and Private Equity. Led research on the EV industry and the humanoid robotics industry in China.</p>
-            </div>
-        </section>
-        
         <section id="projects">
-            <h2>Projects</h2>
-            <h3>Hardware</h3>
-             <ul>
-                <li><strong>SIMD accelerator </strong> block in Verilog and SystemC High Level Sythensis (for EE271).
-                <li><strong>Harmonic music player and display:</strong> Music player with harmonic, polyphonic, reverb, and stereo features on a PYNQ-Z1 FPGA board with a waveform VGA display.</li>
-                <li><strong>Password Hasher:</strong> Brownie hash algorithm and checker on a PYNQ-Z1 board.</li>
-                <li><strong>LED Tetris:</strong> Tetris on a custom PCB with an Arduino Uno and hand-soldered LEDs.</li>
-                <li><strong>Useless Box:</strong> A "Useless Box" with a personality (programmed with an Arduino Uno).</li>
-</li>
+            <h2>Projects and Research</h2>
+            <ul class="project-list">
+                <li><a href="projects/bountybench-cybench.html"> BountyBench Research (NeurIPS 2025)</a></li>
+                <li><a href="projects/modeling-chaos.html">Modeling Chaos: Dynamical Systems Research Paper</a></li>
+                <li><a href="projects/circuitRL.html">circuitRL</a></li>
+                <li><a href="projects/Xilinx-music-player.html">FPGA Music Player and Waveform Display</a></li>
+                <li><a href="projects/led-tetris.html">LED Tetris on a Custom PCB</a></li>
+                <li><a href="projects/useless-box.html">Erratic Useless Box</a></li>
+                <li><a href="projects/code-canary.html">Code Canary</a></li>
+                <li><a href="projects/trusty-browser.html">Trusty Secure Browser</a></li>
             </ul>
-            <h3>Software</h3>
-            <ul>
-                <li><strong><a href="https://devpost.com/software/code-canary">Code Canary</a></strong> LLM-based software supply
-chain security agent. (Won best overall hack at Lux Capital Hackathon sponsored by Ramp, Cognition, & AWS)</li>
-                <li><strong>Explicit free-list memory allocator</strong> with malloc, realloc, free for CS107</li>
-                <li><strong>Unix V6 filesystem</strong> with block, inode, file, directory, pathname layers for CS111</li>
-                <li><strong><a href="https://www.jointrusty.com/">Trusty</a> Secure Browser</strong> to protect people from browser-based attacks</li>
-            </ul>
-        </section>
-
-        <section id="coursework">
-            <h2>Coursework</h2>  
-            <p><strong>CS:</strong> programming abstractions (algos, data structures, oop, big O complexity), computer organization and systems, operating systems principles (concurrency, synchronization, scheduling, processes, virtual memory, I/O, file systems, and protection), artifical intelligence principles and techniques (search algorithms, MDPs, RL, CSPs), robot perception (reconstruction, mapping, pose estimation, learning-based vision, simulation, and planning), reinforcement learning. (Stanford CS106A, 106B, 107, 111, 221, 227A, 234)</p>
-
-            <p><strong>EE:</strong> circuit analysis and design, digital system design (combinational and sequential logic design in Verilog), intro to VLSI (chip design and fabrication; deisnged a DNN Hardware Accelerator), signals and systems, digital systems architecture. (EE101A, 102A, 108, 180, 271; Engr40M)</p>
-
-            <p><strong>MATH:</strong> linear algebra, multivariable calculus, differential equations, fourier methods, applied matrix theory, elementary real analysis, probability theory, computability theory and discrete math (Stanford MATH 51, 53, 104, 115; CS 109, 103)</p>
-        </section>
-
-        <section id="languages">
-            <h2>Languages</h2>
-            <p>Fluent in Mandarin Chinese.</p>
-            <p><strong>Programming Languages:</strong> C/C++, Python, Verilog/SystemVerilog</p>
         </section>
 
         <footer>
-            <p><a href="https://github.com/lmclane04" target="_blank">GitHub</a></p>
-            <p><a href="https://www.linkedin.com/in/lauren-mclane-108256218/" target="_blank">LinkedIn</a></p>
-            <p><a href="https://www.goodreads.com/user/show/164493290-lauren-mclane" target="_blank">Goodreads</a></p>
+            <p><a href="https://github.com/lmclane04" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            <p><a href="https://www.linkedin.com/in/lauren-mclane-108256218/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+            <p><a href="https://www.goodreads.com/user/show/164493290-lauren-mclane" target="_blank" rel="noopener noreferrer">Goodreads</a></p>
             <p><a href="mailto:lmclane@stanford.edu">Email</a></p>
         </footer>
     </div>
 </body>
-</html> 
+</html>

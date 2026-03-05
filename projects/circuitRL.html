@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>circuitRL</title>
+    <link rel="stylesheet" href="../simple.css">
+</head>
+<body class="project-page">
+    <div class="container">
+        <a class="back-link" href="../index.html">Back to home</a>
+        <h1>circuitRL</h1>
+        <p>Analog and mixed-signal circuit design is still one of the biggest bottlenecks in hardware development. Unlike digital design, much of the work relies on manual tuning and repeated simulations to get a circuit to meet its performance targets.
+            
+        circuitRL is a project exploring whether reinforcement learning can help automate this process. The idea is to treat circuit sizing as a sequential decision problem where an RL agent adjusts transistor parameters and receives feedback from circuit simulations. The simulation environment is built on Ngspice, and I use Proximal Policy Optimization (PPO) to train agents on circuits like a common-source amplifier and a two-stage operational amplifier.
+
+        The goal of this work is to explore whether RL can search large design spaces more efficiently than traditional optimization methods, while remaining flexible enough to apply across different analog circuit topologies.
+            
+        I started working on this project as part of my final project for CS234: Reinforcement Learning. I'm working on extending this project to use a meta-RL and graph-based approach and show transfer learning across different circuit topologies.
+        <p><a href="https://github.com/lmclane04/circuitRL" target="_blank" rel="noopener noreferrer">Link to code</a></p>
+    </div>
+</body>
+</html>
